@@ -216,6 +216,14 @@ let Menus = {
             })
         )
       })
+
+      this.buttons.push(
+          new Button({
+            x: 10,
+            y: game.height - 100,
+            text: game.player.money.toString(),
+          })
+      )
       this.buttons.push(new Button({
         x: game.width/2 + 5,
         y: (game.height * 3 / 4) + 15,
