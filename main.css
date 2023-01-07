@@ -1,0 +1,29 @@
+.tooltip {
+    z-index: 99;
+    color: white;
+    background-color: black;
+    text-decoration:none;
+    position:absolute;
+    user-select: none;
+    display:none;
+}
+
+.display span {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+}
+
+body{
+  background-color: #0F0F0F;
+  text-align: center;
+}
+
+
+canvas {
+
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

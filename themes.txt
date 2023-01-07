@@ -1,0 +1,114 @@
+Themes
+
+/*************/
+/*** Decay ***/
+/*************/
+♦ Thematically:
+♦ Mechanically: Same as Clockwork
+♦ Considerations:
+
+/**************/
+/*** Layers ***/
+/**************/
+♦ Thematically:
+♦ Mechanically:
+♦ Considerations:
+
+/*****************************************/
+/*** Control the world, not the player ***/
+/*****************************************/
+♦ Thematically:
+♦ Mechanically:
+♦ Considerations:
+
+/*************/
+/*** Nomad ***/
+/*************/
+♦ Thematically:
+♦ Mechanically:
+♦ Considerations:
+
+/*******************/
+/*** Connections ***/
+/*******************/
+♦ Thematically:
+♦ Mechanically:
+♦ Considerations:
+
+/***********************/
+/*** Stuck in a Loop ***/
+/***********************/
+♦ Thematically: Time Mechanic who must fix the time space continuum.
+♦ Mechanically: TIME MECHANIC
+♦ Considerations: TIME MECHANIC
+
+/***************************/
+/*** Feeding the Monster ***/
+/***************************/
+♦ Thematically: There is a monster. Feed it.
+♦ Mechanically: Play cards and get resources to 'feed the monster'. As you feed the monster it gets bigger and requires more nutrients, but you get new cards that are better/have more synergies.
+♦ Considerations:
+
+/****************************/
+/*** Delay the Inevitable ***/
+/****************************/
+♦ Thematically: Scientists are building a space ship to save the human race from something. That something is inevitable. You must delay that something to give the scientists enough time to finish.
+♦ Mechanically: Play cards to build up resources and enact laws.
+♦ Considerations:
+
+/******************/
+/*** Contain It ***/
+/******************/
+♦ Thematically: SCP the card game
+♦ Mechanically: Stats to appease the monster. Monster has random stats/requirements. You play cards to move those stats in some way to figure out how to appease them.
+♦ Considerations:
+
+/*********************/
+/*** Day and Night ***/
+/*********************/
+♦ Thematically: fucking sun and moons
+♦ Mechanically: Day phase and night phase. Day phase is prepare for trouble, make it double. Night phase is zombies or other bad thing happens.
+♦ Considerations:
+
+/*******************/
+/*** Shipwrecked ***/
+/*******************/
+♦ Thematically:
+♦ Mechanically: Galaxy Trucker again but on an island
+♦ Considerations:
+
+
+/*****************/
+/*** Clockwork ***/
+/*****************/
+♦ Thematically: Visual Clockwork theme (Mainly card templates as my art is atrocious)
+♦ Mechanically: Player only has a certain amount of 'tension' represented by a certain number of tokens (lets say 10), cards take tension to activate/use. When you use a space that you play tension on, you only get to remove (and thus gain back) 1 tension from each space you've used and you can't use that space again until all the tension is released.
+♦ Considerations, more of a board game style feel?
+
+/*******************************/
+/*** You can't save them all ***/
+/*******************************/
+♦ Thematically:
+♦ Mechanically: Galaxy Trucker.
+♦ Considerations:
+
+/****************************/
+/*** Death is not the end ***/
+/****************************/
+♦ Thematically: Robots that keep getting rebuilt to be stronger, but they are suicidal.
+♦ Mechanically: Every time a unit dies, it gets upgraded and shuffled back into your deck.
+♦ Considerations:
+
+/*****************/
+/*** Summoning ***/
+/*****************/
+♦ Thematically: There is a summoning.
+♦ Mechanically: Series of missions where you can upgrade your deck after each mission. Kill cultists or something
+♦ Considerations: You have to summon a demon or stop a summoning of demons.
+
+/**************************************************/
+/*** The world changes when you are not looking ***/
+/**************************************************/
+♦ Thematically:
+♦ Mechanically:
+♦ Considerations: Face Blindness Game, Civilization
