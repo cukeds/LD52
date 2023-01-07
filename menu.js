@@ -187,7 +187,6 @@ let Menus = {
       })
     }
   },
-
   itemsMenu:{
     load: function(){
       Menu.apply(this);
@@ -198,6 +197,7 @@ let Menus = {
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
       let self = this;
+
 
       let positions = [
         {x: 45, y: 36},
@@ -215,29 +215,42 @@ let Menus = {
               height: 80,
               image: item.type.toLowerCase(),
               callback: function(){
-                console.log(`${item.name}`)
+                if (self.ui.length > 5){
+                  for(let i = 0; i <= self.ui.length - 5; i++) self.ui.pop();
+                }
+                self.ui.push(
+                    new Ui({
+                      x: 800,
+                      y: 0,
+                      width: 120,
+                      text: item.name,
+                      textSize: 60,
+                      textColor: "white"
+                    })
+                )
+                self.ui.push(
+                    new Ui({
+                      x: 800,
+                      y: 150,
+                      width: 500,
+                      text: `${item.description} You think you could sell it for $${item.apparentVal}`,
+                      textSize: 35,
+                      textColor: "black"
+                    })
+                )
               }
-            })
-        )
-        self.ui.push(
-            // Generate names
-            new Ui({
-              x: positions[index].x,
-              y: positions[index].y + 20,
-              width: 120,
-              text: item.name,
-              textSize: 20
             })
         )
 
         self.ui.push(
             // Generate price
             new Ui({
-              x: positions[index].x,
+              x: positions[index].x + 40,
               y: positions[index].y - 20,
               width: 120,
-              text: item.apparentVal.toString(),
-              textSize: 20
+              text: `$${item.apparentVal.toString()}`,
+              textSize: 20,
+              textColor: "white"
             })
         )
 
@@ -249,32 +262,9 @@ let Menus = {
         y: menuTop + 2,
         width: menuWidth - 4,
         height: (menuHeight/4) - 4,
-        text: 'Barn',
+        text: 'Wait for customer',
         callback: function(){
-          console.log('Barning it up');
-        }
-      }));
-
-      this.buttons.push(new Button({
-        x: menuLeft + 2,
-        y: menuTop + 2 + menuHeight/4,
-        width: menuWidth - 4,
-        height: (menuHeight/4) - 4,
-        text: 'Garage Sales',
-        callback: function(){
-          console.log('Garaging it up');
-        }
-      }));
-
-      this.buttons.push(new Button({
-        x: menuLeft + 2,
-        y: menuTop + 2 + 2*menuHeight/4,
-        width: menuWidth - 4,
-        height: (menuHeight/4) - 4,
-        text: 'Beach',
-        callback: function(){
-          console.log('Beaching it up');
-          game.enterMenu(Menus.beachLocationMenu.load());
+          game.enterMenu(Menus.customerMenu.load());
         }
       }));
 
@@ -286,10 +276,12 @@ let Menus = {
       })
     },
     draw: function(){
+
       game.artist.drawImage(game.images["background-main"], 0, 0, game.width, game.height)
+
       game.artist.writeTextFit(`$${game.player.money.toString()}`, 20, game.height - 100, 40, 300, "lightgreen")
-      
-      //okay button
+
+
       this.buttons.forEach(btn =>{
         btn.draw();
       })
@@ -297,8 +289,91 @@ let Menus = {
       this.ui.forEach(ui =>{
         ui.draw();
       })
+
     }
   },
+  customerMenu:{
+    load: function(){
+      Menu.apply(this);
+      this.name = "customerMenu";
+      this.ui = [];
+      let menuLeft = 2*game.width/3;
+      let menuTop = 3*game.height/4;
+      let menuWidth = game.width/3-5;
+      let menuHeight = game.height/4-5;
+      let self = this;
 
+
+      let positions = [
+        {x: 45, y: 36},
+        {x: 215, y: 95},
+        {x: 380, y: 225},
+        {x: 490, y: 360},
+        {x: 560, y: 540}
+      ]
+      game.player.items.forEach( function (item , index) {
+        self.buttons.push(
+            new Button({
+              x: positions[index].x,
+              y: positions[index].y,
+              width: 120,
+              height: 80,
+              image: item.type.toLowerCase(),
+              callback: function(){
+                console.log("I'm trying to be sold!!!");
+              }
+            })
+        )
+
+        self.ui.push(
+            // Generate price
+            new Ui({
+              x: positions[index].x + 40,
+              y: positions[index].y - 20,
+              width: 120,
+              text: `$${item.apparentVal.toString()}`,
+              textSize: 20,
+              textColor: "white"
+            })
+        )
+
+      });
+
+
+      this.buttons.push(new Button({
+        x: menuLeft + 2,
+        y: menuTop + 2,
+        width: menuWidth - 4,
+        height: (menuHeight/4) - 4,
+        text: 'Wait for customer',
+        callback: function(){
+          game.enterMenu(Menus.customerMenu.load());
+        }
+      }));
+
+      return this;
+    },
+    update: function(){
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+    },
+    draw: function(){
+
+      game.artist.drawImage(game.images["background-main"], 0, 0, game.width, game.height)
+
+      game.artist.writeTextFit(`$${game.player.money.toString()}`, 20, game.height - 100, 40, 300, "lightgreen")
+
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+      this.ui.forEach(ui =>{
+        ui.draw();
+      })
+
+    }
+  },
 
 }

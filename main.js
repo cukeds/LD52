@@ -23,7 +23,12 @@ var game = {
     this.artist.drawRect(0,0,this.width,this.height,"#aaa");
     
     let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool"];
-
+    for(let i = 1; i <= 3; i++){
+      imageNames.push(`hat${i}`);
+      imageNames.push(`body${i}`);
+      imageNames.push(`face${i}`);
+      imageNames.push(`head${i}`);
+    }
 
     ////////////////////  Images
     imageNames.forEach(img => {
@@ -75,7 +80,6 @@ var game = {
 
     let loaded = true;
     let loadCount = 0;
-
 
     Object.keys(this.images).forEach(img => {
       if(this.images[img].ready === false){
