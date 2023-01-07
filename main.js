@@ -55,13 +55,14 @@ var game = {
       game.voiceVolume = Number(localStorage.voiceVolume);
     }
 
-    this.menus.push(Menus.startMenu.load());
 
     this.player = new Player();
 
     //read URL
-    this.loadFromUrl(window.location.href)
-    //add Items to player
+
+      this.loadFromUrl(window.location.href)
+      //add Items to player
+
 
 
     //load customers
@@ -209,6 +210,12 @@ var game = {
     this.player.money =  Number(parts[1].split("m")[1])
     this.round = Number(parts[2].split("r")[1])
 
+    if(this.round === 0){
+      this.menus.push(Menus.startMenu.load());
+    }
+    else{
+      this.menus.push(Menus.itemsMenu.load());
+    }
   }
 
 }

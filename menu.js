@@ -192,12 +192,13 @@ let Menus = {
     load: function(){
       Menu.apply(this);
       this.name = "itemsMenu";
-
+      this.ui = [];
       let menuLeft = 2*game.width/3;
       let menuTop = 3*game.height/4;
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
       let self = this;
+
       let positions = [
         {x: 45, y: 36},
         {x: 215, y: 95},
@@ -210,31 +211,38 @@ let Menus = {
             new Button({
               x: positions[index].x,
               y: positions[index].y,
-             width: 120,
+              width: 120,
               height: 80,
-              image: item.type.toLowerCase()
+              image: item.type.toLowerCase(),
+              callback: function(){
+                console.log(`${item.name}`)
+              }
             })
         )
-      })
+        self.ui.push(
+            // Generate names
+            new Ui({
+              x: positions[index].x,
+              y: positions[index].y + 20,
+              width: 120,
+              text: item.name,
+              textSize: 20
+            })
+        )
 
-      this.buttons.push(
-          new Button({
-            x: 10,
-            y: game.height - 100,
-            text: game.player.money.toString(),
-          })
-      )
-      this.buttons.push(new Button({
-        x: game.width/2 + 5,
-        y: (game.height * 3 / 4) + 15,
-        width: game.width / 6 - 5,
-        height: 50,
-        text: 'Okay',
-        callback: function(){
-          console.log('okay');
-          game.exitMenu();
-        }
-      }));
+        self.ui.push(
+            // Generate price
+            new Ui({
+              x: positions[index].x,
+              y: positions[index].y - 20,
+              width: 120,
+              text: item.apparentVal.toString(),
+              textSize: 20
+            })
+        )
+
+      });
+
 
       this.buttons.push(new Button({
         x: menuLeft + 2,
@@ -279,11 +287,15 @@ let Menus = {
     },
     draw: function(){
       game.artist.drawImage(game.images["background-main"], 0, 0, game.width, game.height)
-
+      game.artist.writeTextFit(`$${game.player.money.toString()}`, 20, game.height - 100, 40, 300, "lightgreen")
       
       //okay button
       this.buttons.forEach(btn =>{
         btn.draw();
+      })
+
+      this.ui.forEach(ui =>{
+        ui.draw();
       })
     }
   },
