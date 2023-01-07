@@ -22,7 +22,7 @@ var game = {
     this.controller = new MouseController(this.artist.canvas);
     this.artist.drawRect(0,0,this.width,this.height,"#aaa");
     
-    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool"];
+    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle"];
     for(let i = 1; i <= 3; i++){
       imageNames.push(`hat${i}`);
       imageNames.push(`body${i}`);
@@ -123,7 +123,7 @@ var game = {
     this.timestamp = tstamp;
 
     if(this.menus.length > 0){
-      this.menus[this.menus.length - 1].update(this.controller);
+      this.menus[this.menus.length - 1].update();
     }else{
       //ran out of menus
       console.log("Ran out of menus");
@@ -155,6 +155,7 @@ var game = {
 
   exitMenu: function(){
     game.menus.pop();
+    game.menus[game.menus.length-1].reload()
   },
 
   getCurMenu: function(){
@@ -174,14 +175,15 @@ var game = {
   parseItem: function(id, quality){
 
     let item = new Item()
-    item.name = ITEMS[id - 1].name
-    item.baseVal = ITEMS[id - 1].baseValue
-    item.apparentVal = Math.round(((this.randInt(quality * 2) - quality) / 100 * item.baseVal + item.baseVal) / 10) * 10
-    item.type = ITEMS[id - 1].type
-    item.description = ITEMS[id - 1].description
-    item.specialFlag = ITEMS[id - 1].specialFlag
-    item.quality = quality
-    return item
+    item.id = id;
+    item.name = ITEMS[id - 1].name;
+    item.baseVal = ITEMS[id - 1].baseValue;
+    item.apparentVal = Math.round(((this.randInt(quality * 2) - quality) / 100 * item.baseVal + item.baseVal) / 10) * 10;
+    item.type = ITEMS[id - 1].type;
+    item.description = ITEMS[id - 1].description;
+    item.specialFlag = ITEMS[id - 1].specialFlag;
+    item.quality = quality;
+    return item;
   },
 
   loadFromUrl: function (url){
@@ -220,6 +222,10 @@ var game = {
     else{
       this.menus.push(Menus.itemsMenu.load());
     }
+  },
+
+  goto(url){
+    window.location.replace(url);
   }
 
 }

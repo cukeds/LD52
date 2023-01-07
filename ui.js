@@ -1,4 +1,5 @@
 let Ui = function(args){
+    this.id = args.id;
     this.x = args.x;
     this.y = args.y;
     this.width = args.width;

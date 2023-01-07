@@ -17,42 +17,30 @@ let Button = function(params){
   })
 
   this.update = function(){
-    if(this.isClicked() && this.callback != undefined){
+    if(this.isClicked() && this.callback !== undefined){
       this.callback();
     }
-    if(this.isRightClicked() && this.rightClickCallback != undefined){
+    if(this.isRightClicked() && this.rightClickCallback !== undefined){
       this.rightClickCallback();
     }
   }
 
   this.isClicked = function(){
-    if(game.controller.isObjClicked(this)){
-      return true;
-    }else{
-      return false;
-    }
+    return game.controller.isObjClicked(this);
   }
 
   this.isRightClicked = function(){
-    if(game.controller.isObjRightClicked(this)){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  this.isHovered = function(){
-
+    return game.controller.isObjRightClicked(this);
   }
 
   this.draw = function(){
-    if(this.text != undefined){
+    if(this.text !== undefined){
       game.artist.drawRect(this.x,this.y,this.width,this.height,'white');
       game.artist.drawRectOutline(this.x,this.y,this.width,this.height,'black');
       game.artist.writeTextFit(this.text, this.x+10, this.y, this.height -this.height/2, this.width,'black')
     }
 
-    if(this.image != undefined){
+    if(this.image !== undefined){
       game.artist.drawImage(game.images[this.image],this.x,this.y,this.width,this.height);
     }
   }
@@ -85,13 +73,13 @@ let Box = function(params){
     // game.artist.drawRect(this.x,this.y,this.width,this.height,'white');
     // game.artist.drawRectOutline(this.x,this.y,this.width,this.height,'black');
     // game.artist.writeTextFit(this.text, this.x+10, this.y+5, 20, this.width,'black')
-    if(this.text != undefined){
+    if(this.text !== undefined){
       game.artist.drawRect(this.x,this.y,this.width,this.height,'white');
       game.artist.drawRectOutline(this.x,this.y,this.width,this.height,'black');
       game.artist.writeTextFit(this.text, this.x+10, this.y+5, this.height -5, this.width,'black')
     }
 
-    if(this.image != undefined){
+    if(this.image !== undefined){
       game.artist.drawImage(game.images[this.image],this.x,this.y,this.width,this.height);
     }
   }
@@ -209,6 +197,7 @@ let Menus = {
       game.player.items.forEach( function (item , index) {
         self.buttons.push(
             new Button({
+              id: item.id,
               x: positions[index].x,
               y: positions[index].y,
               width: 120,
@@ -221,10 +210,10 @@ let Menus = {
                 self.ui.push(
                     new Ui({
                       x: 800,
-                      y: 0,
-                      width: 120,
+                      y: item.name.length > 10 ? 80 : 0,
+                      width: item.name.length > 10 ? 500 : 120,
                       text: item.name,
-                      textSize: 60,
+                      textSize: item.name.length > 10 ? 40 : 60,
                       textColor: "white"
                     })
                 )
@@ -245,6 +234,7 @@ let Menus = {
         self.ui.push(
             // Generate price
             new Ui({
+              id: item.id,
               x: positions[index].x + 40,
               y: positions[index].y - 20,
               width: 120,
@@ -274,6 +264,10 @@ let Menus = {
       this.buttons.forEach(btn =>{
         btn.update();
       })
+
+      if(game.player.items.length === 0){
+        game.enterMenu(Menus.pushGame.load());
+      }
     },
     draw: function(){
 
@@ -290,6 +284,16 @@ let Menus = {
         ui.draw();
       })
 
+    },
+
+    reload: function() {
+      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(btn => game.player.items.filter(item => item.id === btn.id).length === 0);
+      checkButtons.length > 0 ? checkButtons[0].toRemove = true : void(0);
+      this.buttons = this.buttons.filter(btn => btn.toRemove !== true);
+
+      let checkUi = this.ui.filter(el => game.player.items.filter(item => item.id === el.id).length === 0);
+      checkUi.length > 0 ? checkUi[0].toRemove = true : void(0);
+      this.ui = this.ui.filter(el => el.toRemove !== true);
     }
   },
   customerMenu:{
@@ -297,6 +301,7 @@ let Menus = {
       Menu.apply(this);
       this.name = "customerMenu";
       this.ui = [];
+      this.customer = CUSTOMERS.Generic();
       let menuLeft = 2*game.width/3;
       let menuTop = 3*game.height/4;
       let menuWidth = game.width/3-5;
@@ -314,6 +319,7 @@ let Menus = {
       game.player.items.forEach( function (item , index) {
         self.buttons.push(
             new Button({
+              id: item.id,
               x: positions[index].x,
               y: positions[index].y,
               width: 120,
@@ -328,6 +334,7 @@ let Menus = {
         self.ui.push(
             // Generate price
             new Ui({
+              id: item.id,
               x: positions[index].x + 40,
               y: positions[index].y - 20,
               width: 120,
@@ -337,6 +344,7 @@ let Menus = {
             })
         )
 
+
       });
 
 
@@ -344,19 +352,63 @@ let Menus = {
         x: menuLeft + 2,
         y: menuTop + 2,
         width: menuWidth - 4,
-        height: (menuHeight/4) - 4,
-        text: 'Wait for customer',
-        callback: function(){
-          game.enterMenu(Menus.customerMenu.load());
+        height: (menuHeight/5) - 4,
+        text: 'Compliment',
+        callback: () => !this.customer.closing ? this.customer.react("compliment") : void(0)
         }
+      ));
+
+      this.buttons.push(new Button({
+        x: menuLeft + 2,
+        y: menuTop + menuHeight/5 + 2,
+        width: menuWidth - 4,
+        height: (menuHeight/5) - 4,
+        text: 'Hook',
+        callback: () => !this.customer.closing ? this.customer.react("hook") : void(0)
       }));
 
+      this.buttons.push(new Button({
+        x: menuLeft + 2,
+        y: menuTop + menuHeight/5 * 2 + 2,
+        width: menuWidth - 4,
+        height: (menuHeight/5) - 4,
+        text: 'Insult',
+        callback: () => !this.customer.closing ? this.customer.react("insult") : void(0)
+      }));
+
+      this.buttons.push(new Button({
+        x: menuLeft + 2,
+        y: menuTop + menuHeight/5 * 3 + 2,
+        width: menuWidth - 4,
+        height: (menuHeight/5) - 4,
+        text: 'Reverse Psychology',
+        callback: () => !this.customer.closing ? this.customer.react("reverse") : void(0)
+      }));
+
+      this.buttons.push(new Button({
+        x: menuLeft + 2,
+        y: menuTop + menuHeight/5 * 4 + 2,
+        width: menuWidth - 4,
+        height: (menuHeight/5) - 4,
+        text: 'Close the deal',
+        callback: () => !this.customer.closing ? this.customer.close() : void(0)
+      }));
       return this;
     },
     update: function(){
+
+      this.customer.update();
       this.buttons.forEach(btn =>{
         btn.update();
       })
+
+      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(btn => game.player.items.filter(item => item.id === btn.id).length === 0);
+      checkButtons.length > 0 ? checkButtons[0].toRemove = true : void(0);
+      this.buttons = this.buttons.filter(btn => btn.toRemove !== true);
+
+      let checkUi = this.ui.filter(el => game.player.items.filter(item => item.id === el.id).length === 0);
+      checkUi.length > 0 ? checkUi[0].toRemove = true : void(0);
+      this.ui = this.ui.filter(el => el.toRemove !== true);
     },
     draw: function(){
 
@@ -364,7 +416,7 @@ let Menus = {
 
       game.artist.writeTextFit(`$${game.player.money.toString()}`, 20, game.height - 100, 40, 300, "lightgreen")
 
-
+      this.customer.draw();
       this.buttons.forEach(btn =>{
         btn.draw();
       })
@@ -373,7 +425,47 @@ let Menus = {
         ui.draw();
       })
 
+
+      let btn = this.buttons.find(btn => btn.id === this.customer.item.id);
+      game.artist.drawImage(game.images["circle"], btn.x, btn.y, 120, 80);
     }
   },
+  pushGame:{
+    load: function(){
+      Menu.apply(this);
+      this.name = "pushGame";
+      let menuLeft = 2*game.width/3;
+      let menuTop = 3*game.height/4;
+      let menuWidth = game.width/3-5;
+      let menuHeight = game.height/4-5;
+      let url = `${CONFIG.URL}#${game.player.getInformationString()}-m${game.player.money}-r${game.round + 1}`
 
+      this.buttons.push(new Button({
+            x: menuLeft + 2,
+            y: menuTop + 2,
+            width: menuWidth - 4,
+            height: (menuHeight/5) - 4,
+            text: 'Back to picking uwuuuu',
+            callback: () => game.goto(url)
+          }
+      ));
+      return this;
+    },
+    update: function(){
+
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+
+    },
+    draw: function(){
+
+      game.artist.drawImage(game.images["background-main"], 0, 0, game.width, game.height)
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+    }
+  },
 }
