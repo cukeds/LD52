@@ -101,7 +101,63 @@ let Menus = {
             game.enterMenu(menu.load());
         }
       }))
+      this.buttons.push(new Button({
+        x:20,
+        y:3*game.height/4 - 100,
+        width: 200,
+        height: 50,
+        text: "Music+",
+        callback:function(){
+          game.musicVolume = Math.min(game.musicVolume + 5, 100);
+          localStorage.musicVolume = game.musicVolume;
+          game.maestro.playMusic('music1');
+        }
+      }));
 
+      this.buttons.push(new Button({
+        x:20,
+        y:3*game.height/4 - 100 + 52,
+        width: 200,
+        height: 50,
+        text: "Music-",
+        callback:function(){
+          game.musicVolume = Math.max(game.musicVolume - 5, 0);
+          localStorage.musicVolume = game.musicVolume;
+          game.maestro.playMusic('music1');
+        }
+      }));
+
+      this.buttons.push(new Button({
+        x:20,
+        y:3*game.height/4 - 100 + 52 + 52,
+        width: 200,
+        height: 50,
+        text: "SFX+",
+        callback:function(){
+          if(game.maestro.music){
+            game.maestro.pauseMusic();
+          }
+          game.sfxVolume = Math.min(game.sfxVolume + 5, 100);
+          localStorage.sfxVolume = game.sfxVolume;
+          game.maestro.playVoice('angry1');
+        }
+      }));
+
+      this.buttons.push(new Button({
+        x:20,
+        y:3*game.height/4 - 100 + 52 + 52 + 52,
+        width: 200,
+        height: 50,
+        text: "SFX-",
+        callback:function(){
+          if(game.maestro.music){
+            game.maestro.pauseMusic();
+          }
+          game.sfxVolume = Math.max(game.sfxVolume - 5, 0);
+          localStorage.sfxVolume = game.sfxVolume;
+          game.maestro.playVoice('bad2');
+        }
+      }));
       return this;
     },
     update: function(){

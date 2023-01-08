@@ -66,9 +66,8 @@ let Maestro = function(){
     }
   }
 
-  this.pauseMusic = function(sndName){
-      let sound = game.music[sndName];
-      sound.pause();
+  this.pauseMusic = function(){
+      this.pause(this.music);
   }
   this.pause = function(snd){
     snd.pause();
