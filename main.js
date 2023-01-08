@@ -229,6 +229,7 @@ var game = {
 
         if(i === 0){
           this.enterMenu(Menus.pushGame.load());
+          return
         }
         this.player.items.push(this.parseItem(i, q));
       }
