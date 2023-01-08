@@ -15,6 +15,7 @@ var game = {
   sounds: [],
   music: [],
   voices: [],
+  pickedItem: -1,
 
 	load: function(){
     this.artist = new Artist(this.width,this.height);

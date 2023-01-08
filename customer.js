@@ -18,6 +18,7 @@ let Customer = function(args){
   this.priceModifier = 1;
   this.actionModifiers = args.actionModifiers;
   this.explodingParticles = [];
+  this.removeItem = false;
 
   this.react = function(action){
     this.actionModifiers[action] >= 1 ? this.priceModifier += 0.07 : this.actionModifiers[action] > 0.5 ? this.priceModifier -= 0.15 : this.priceModifier -= 0.3;
@@ -30,6 +31,7 @@ let Customer = function(args){
 
   this.close = function(){
     game.player.money += this.sellingPrice;
+    this.removeItem = true;
     this.closing = true;
   }
 
@@ -39,6 +41,7 @@ let Customer = function(args){
       this.explodingParticles.push(new Particle(850, 150));
     }
     game.maestro.playVoice(`angry${game.randInt(3)+1}`)
+    this.removeItem = true;
   }
 
   this.exit = function(){
@@ -127,7 +130,9 @@ NICKNAMES = [
 
 CUSTOMERS = {
   Generic: function (){
-    let item = game.player.items[game.randInt(game.player.items.length)];
+    let index = game.randInt(game.player.items.length);
+    game.pickedItem = index;
+    let item = game.player.items[index];
     let sellingPrice = item.apparentVal * 0.8;
     let keys =  Object.keys(PERSONALITIES);
     let body = `body${game.randInt(3) + 1}`;

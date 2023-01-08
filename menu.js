@@ -235,7 +235,8 @@ let Menus = {
       game.player.items.forEach( function (item , index) {
         self.buttons.push(
             new Button({
-              id: item.id,
+              id: index,
+              item_id: item.id,
               x: positions[index].x,
               y: positions[index].y,
               width: 120,
@@ -272,7 +273,7 @@ let Menus = {
         self.ui.push(
             // Generate price
             new Ui({
-              id: item.id,
+              id: index,
               x: positions[index].x + 40,
               y: positions[index].y - 20,
               width: 120,
@@ -325,14 +326,8 @@ let Menus = {
     },
 
     reload: function() {
-      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(
-          btn => game.player.items.filter(item => item.id === btn.id).length === 0);
-      checkButtons.length > 0 ? checkButtons[0].toRemove = true : void(0);
-      this.buttons = this.buttons.filter(btn => btn.toRemove !== true);
-
-      let checkUi = this.ui.filter(el => game.player.items.filter(item => item.id === el.id).length === 0);
-      checkUi.length > 0 ? checkUi[0].toRemove = true : void(0);
-      this.ui = this.ui.filter(el => el.toRemove !== true);
+      this.buttons = [];
+      this.load();
     }
   },
   customerMenu:{
@@ -358,7 +353,8 @@ let Menus = {
       game.player.items.forEach( function (item , index) {
         self.buttons.push(
             new Button({
-              id: item.id,
+              id: index,
+              item_id: item.id,
               x: positions[index].x,
               y: positions[index].y,
               width: 120,
@@ -373,7 +369,8 @@ let Menus = {
         self.ui.push(
             // Generate price
             new Ui({
-              id: item.id,
+              id: index,
+              item_id: item.id,
               x: positions[index].x + 40,
               y: positions[index].y - 20,
               width: 120,
@@ -440,14 +437,11 @@ let Menus = {
       this.buttons.forEach(btn =>{
         btn.update();
       })
-
-      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(btn => game.player.items.filter(item => item.id === btn.id).length === 0);
-      checkButtons.length > 0 ? checkButtons[0].toRemove = true : void(0);
-      this.buttons = this.buttons.filter(btn => btn.toRemove !== true);
-
-      let checkUi = this.ui.filter(el => game.player.items.filter(item => item.id === el.id).length === 0);
-      checkUi.length > 0 ? checkUi[0].toRemove = true : void(0);
-      this.ui = this.ui.filter(el => el.toRemove !== true);
+      if(this.customer.removeItem){
+        this.buttons = this.buttons.filter(btn => btn.id !== game.pickedItem);
+        this.ui = this.ui.filter(ui => ui.id !== game.pickedItem);
+        this.customer.removeItem = false;
+      }
     },
     draw: function(){
 
@@ -465,7 +459,7 @@ let Menus = {
       })
 
 
-      let btn = this.buttons.find(btn => btn.id === this.customer.item.id);
+      let btn = this.buttons.find(btn => btn.id === game.pickedItem);
       if(btn !== undefined){
         game.artist.drawImage(game.images["circle"], btn.x, btn.y, 120, 80);
       }
