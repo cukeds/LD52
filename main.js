@@ -23,7 +23,7 @@ var game = {
     this.controller = new MouseController(this.artist.canvas);
     this.artist.drawRect(0,0,this.width,this.height,"#aaa");
     
-    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle", "chicky", "background-intro"];
+    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle", "chicky", "background-intro", "credits"];
     for(let i = 1; i <= 3; i++){
       imageNames.push(`hat${i}`);
       imageNames.push(`body${i}`);

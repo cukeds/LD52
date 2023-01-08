@@ -304,8 +304,13 @@ let Menus = {
         btn.update();
       })
 
-      if(game.player.items.length === 0){
+      if(game.player.items.length === 0 && game.player.money < 10000 && game.round < 5){
         game.enterMenu(Menus.pushGame.load());
+      }
+      else if (game.player.money > 10000){
+        game.enterMenu(Menus.wonGame.load());
+      }else if(game.round >= 5){
+        game.enterMenu(Menus.lostGame.load());
       }
     },
     draw: function(){
@@ -480,7 +485,7 @@ let Menus = {
             y: menuTop + 2,
             width: menuWidth - 4,
             height: (menuHeight/5) - 4,
-            text: 'Back to picking uwuuuu',
+            text: 'Back to picking for another day',
             callback: () => game.goto(url)
           }
       ));
@@ -496,6 +501,99 @@ let Menus = {
     draw: function(){
 
       game.artist.drawImage(game.images["background-main"], 0, 0, game.width, game.height)
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+    }
+  },
+  wonGame:{
+    load: function(){
+      Menu.apply(this);
+      this.name = "pushGame";
+      let menuLeft = 2*game.width/3;
+      let menuTop = 3*game.height/4;
+      let menuWidth = game.width/3-5;
+      let menuHeight = game.height/4-5;
+
+      this.buttons.push(new Button({
+            x: menuLeft + 2,
+            y: menuTop + 2,
+            width: menuWidth - 4,
+            height: (menuHeight/5) - 4,
+            text: 'OMG I FINALLY GET TO DATE YOU :D',
+            callback: () => game.enterMenu(Menus.credits.load())
+          }
+      ));
+      return this;
+    },
+    update: function(){
+
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+
+    },
+    draw: function(){
+
+      game.artist.drawImage(game.images["background-intro"], 0, 0, game.width, game.height)
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+    }
+  },
+  lostGame:{
+    load: function(){
+      Menu.apply(this);
+      this.name = "pushGame";
+      let menuLeft = 2*game.width/3;
+      let menuTop = 3*game.height/4;
+      let menuWidth = game.width/3-5;
+      let menuHeight = game.height/4-5;
+
+      this.buttons.push(new Button({
+            x: menuLeft + 2,
+            y: menuTop + 2,
+            width: menuWidth - 4,
+            height: (menuHeight/5) - 4,
+            text: "Oh no I'm so saaad, I wanna cryyyyyy",
+            callback: () => game.enterMenu(Menus.credits.load())
+          }
+      ));
+      return this;
+    },
+    update: function(){
+
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+
+    },
+    draw: function(){
+
+      game.artist.drawImage(game.images["background-intro"], 0, 0, game.width, game.height)
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+    }
+  },
+  credits:{
+    load: function(){
+      Menu.apply(this);
+      return this;
+    },
+    update: function(){
+
+
+    },
+    draw: function(){
+
+      game.artist.drawImage(game.images["credits"], 0, 0, game.width, game.height)
 
       this.buttons.forEach(btn =>{
         btn.draw();
