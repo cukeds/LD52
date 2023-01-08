@@ -99,7 +99,6 @@ let Menus = {
         height: 75,
         text: "Continue",
         callback: function(){
-          game.maestro.playMusic("music1");
           game.maestro.stopVoice("chicky");
           game.enterMenu(Menus.itemsMenu.load());
         }
@@ -223,6 +222,7 @@ let Menus = {
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
       let self = this;
+      game.maestro.playMusic("music1");
 
 
       let positions = [
