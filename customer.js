@@ -24,7 +24,7 @@ let Customer = function(args){
     this.actionModifiers[action] >= 1 ? this.priceModifier += 0.07 : this.actionModifiers[action] > 0.5 ? this.priceModifier -= 0.15 : this.priceModifier -= 0.3;
     this.actionModifiers[action] > 1 ? game.maestro.playVoice(`good${game.randInt(3)+1}`) : game.maestro.playVoice(`bad${game.randInt(3)+1}`);
     this.actionModifiers[action] > 0 ? this.actionModifiers[action] -= 0.2 : this.actionModifiers[action] = 0;
-    this.sellingPrice = Math.round(this.item.apparentVal * this.priceModifier)
+    this.sellingPrice = Math.max(Math.round(this.item.apparentVal * this.priceModifier), 0);
 
     this.patience--;
   }
