@@ -96,7 +96,7 @@ let Menus = {
         y: 0,
         width: 300,
         height: 75,
-        text: "Skip intro",
+        text: "Continue",
         callback: function(){
           game.enterMenu(Menus.itemsMenu.load());
         }
@@ -112,7 +112,7 @@ let Menus = {
     draw: function(){
       game.artist.drawImage(game.images["background-intro"], 0, 0,game.width,game.height)
       game.artist.drawImage(game.images["chicky"], game.width / 2, 0, 458, 648)
-      game.artist.drawRect(50, 150, 700, (CONFIG.INTROTEXT.split(" ").length - 1) % 26 * 10)
+      game.artist.drawRect(50, 150, 700, (CONFIG.INTROTEXT.split(" ").length - 1) % 33 * 10)
       game.artist.writeTextFit(CONFIG.INTROTEXT, 50, 150, 24, 700, "white")
 
       this.buttons.forEach(btn =>{

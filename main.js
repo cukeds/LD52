@@ -205,6 +205,16 @@ var game = {
     let parts = hash.split("-")
 
 
+    if (parts.length === 1) {
+      console.log(this.randInt(5) + 1)
+      this.player.items.push(this.parseItem(this.randInt(5) + 1, 2))
+      this.player.items.push(this.parseItem(this.randInt(5, 5) + 1, 2))
+      this.player.items.push(this.parseItem(this.randInt(5, 10) + 1, 2))
+      this.player.items.push(this.parseItem(this.randInt(5, 15) + 1, 2))
+      this.player.items.push(this.parseItem(this.randInt(5, 20) + 1, 2))
+      this.menus.push(Menus.startMenu.load());
+      return;
+    }
     if (parts.length < 3) {
       alert("Wrong url");
       return;
