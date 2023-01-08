@@ -407,7 +407,7 @@ let Menus = {
         y: menuTop + menuHeight/5 + 2,
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
-        text: 'Hook',
+        text: 'Upsell',
         callback: () => !this.customer.closing ? this.customer.react("hook") : void(0)
       }));
 
