@@ -9,6 +9,6 @@ CONFIG = {
         " go out together. Who knows. Wink wink. I just hope you can manage that much ;)",
     LOSETEXT: "Fuck you, you stupid useless haggler. I don't need you. You're worthless. You will never have my love. My love" +
         " is reserved for people who are GOOD at what they do, not for dummies like you. I hope you never haggle again in your life." +
-        " I will have to keep this money here just to pay for the psychological damages you've caused me... If you managed to " +
-        "harvest $10000 however, I may forgive you and love you... I don't know tho, go try again."
+        " I will have to keep this money here just to pay for the psychological damages you've caused me... However, if you managed to " +
+        "harvest $10000, I may forgive you and love you... I don't know tho, go try again."
 }

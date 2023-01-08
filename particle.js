@@ -1,4 +1,4 @@
-let Particle = function(originX, originY){
+let Particle = function(originX, originY, color="red"){
     this.origin  = {
         x: originX,
         y: originY
@@ -6,7 +6,7 @@ let Particle = function(originX, originY){
     this.x = originX;
     this.y = originY;
     this.size = game.randInt(10,1);
-    this.color = "red";
+    this.color = color;
     this.xSpeed = Math.random() * 21 - 10;
     this.ySpeed = Math.random() * 21 - 10;
     this.gravity = game.randInt(10) < 2;

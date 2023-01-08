@@ -46,7 +46,7 @@ var game = {
       this.music[mus] = this.maestro.loadSound(mus);
     })
     ///////////////////   Voices
-    let voiceNames = ["chicky"];
+    let voiceNames = ["chicky", "win", "lose"];
 
     for(let i = 1; i < 4; i++){
       voiceNames.push(`enter${i}`);
@@ -213,6 +213,10 @@ var game = {
       this.player.items.push(this.parseItem(this.randInt(5, 10) + 1, 2))
       this.player.items.push(this.parseItem(this.randInt(5, 15) + 1, 2))
       this.player.items.push(this.parseItem(this.randInt(5, 20) + 1, 2))
+      this.player.items.forEach(item => {
+        item.baseVal = item.baseVal / 2;
+        item.apparentVal = item.apparentVal / 2;
+      })
       this.menus.push(Menus.startMenu.load());
       return;
     }

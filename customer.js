@@ -22,7 +22,7 @@ let Customer = function(args){
 
   this.react = function(action){
     this.actionModifiers[action] >= 1 ? this.priceModifier += 0.07 : this.actionModifiers[action] > 0.5 ? this.priceModifier -= 0.15 : this.priceModifier -= 0.3;
-    this.actionModifiers[action] > 1 ? game.maestro.playVoice(`good${game.randInt(3)+1}`) : game.maestro.playVoice(`bad${game.randInt(3)+1}`);
+    this.actionModifiers[action] >= 1 ? game.maestro.playVoice(`good${game.randInt(3)+1}`) : game.maestro.playVoice(`bad${game.randInt(3)+1}`);
     this.actionModifiers[action] > 0 ? this.actionModifiers[action] -= 0.2 : this.actionModifiers[action] = 0;
     this.sellingPrice = Math.max(Math.round(this.item.apparentVal * this.priceModifier), 1);
 
@@ -70,25 +70,29 @@ let Customer = function(args){
       }
 
       if (this.patience > 0) {
+        if(this.patience === 1){
+          this.explodingParticles.push(new Particle(850, 150, "orange"));
+        }
         this.dialogue = `Dang I really want that ${this.item.name}, I'm willing to pay $${this.sellingPrice} right now oh yeahhhh`
-      } else {
+      } else if(this.patience === 0){
         this.dialogue = `NEVERMIND YOUR STUPID SELLING, I'LL JUST TAKE ${this.item.name} FOR $0!!!!!!!!`
         if (this.triggered === 0) {
           this.steal();
           this.triggered = 1500;
         }
-        this.explodingParticles.forEach(particle => particle.update());
         this.triggered -= game.delta;
         if (this.triggered < 0) {
           this.exit();
         }
 
       }
+
     }
     if(this.start){
       this.start = false;
       game.maestro.playVoice(`enter${game.randInt(3)+1}`);
     }
+    this.explodingParticles.forEach(particle => particle.update());
   }
 
   this.draw = function(){
@@ -106,10 +110,12 @@ let Customer = function(args){
     }
 
     if(this.showDialogue){
-      let height = (this.dialogue.split(" ").length) * 5.3
+      let height = (this.dialogue.split(" ").length / 5) * 30
       game.artist.drawRect(950, 100, 300, height, "white");
       game.artist.writeTextFit(this.dialogue, 950, 100, 20, 300, "black")
     }
+
+
 
     this.explodingParticles.forEach(particle=> particle.draw());
   }

@@ -3,7 +3,7 @@ ITEMS = [
         "id": 1,
         "name": "Necklace",
         "quality": 0,
-        "baseValue": 0,
+        "baseValue": 150,
         "type": "Jewelry",
         "description": "An elegant fashion statement for someone who can afford a matching wardrobe.",
         "specialFlag": 0
@@ -11,8 +11,8 @@ ITEMS = [
     {
         "id": 2,
         "name": "Ring",
-        "quality": 7.5,
-        "baseValue": 644,
+        "quality": 8.7,
+        "baseValue": 50,
         "type": "Jewelry",
         "description": "Engraved with some strange symbols, hopefully the owner doesn't come looking for it.",
         "specialFlag": 0
@@ -20,8 +20,8 @@ ITEMS = [
     {
         "id": 3,
         "name": "Earring",
-        "quality": 3.3,
-        "baseValue": 2070,
+        "quality": 6.5,
+        "baseValue": 750,
         "type": "Jewelry",
         "description": "A pair of earrings in the shape of skulls. They don't match but they have an endearing quality to them.",
         "specialFlag": 0
@@ -29,8 +29,8 @@ ITEMS = [
     {
         "id": 4,
         "name": "Blingy Chain",
-        "quality": 5.8,
-        "baseValue": 4792,
+        "quality": 3.2,
+        "baseValue": 1500,
         "type": "Jewelry",
         "description": "A gold chain once worn by the rapper FIST. It menaces with spikes of diamond.",
         "specialFlag": 0
@@ -38,8 +38,8 @@ ITEMS = [
     {
         "id": 5,
         "name": "Tiara",
-        "quality": 6.9,
-        "baseValue": 3932,
+        "quality": 8.4,
+        "baseValue": 2000,
         "type": "Jewelry",
         "description": "This piece looks absolutely stunning. It would really sing with some billowing golden locks flowing behind it.",
         "specialFlag": 1
@@ -47,8 +47,8 @@ ITEMS = [
     {
         "id": 6,
         "name": "Shovel",
-        "quality": 2,
-        "baseValue": 4269,
+        "quality": 2.9,
+        "baseValue": 1500,
         "type": "Tool",
         "description": "With ornate hand grips and some sort of anti-splinter guard, this is one of the nicest shovels you've seen. Shame the tip is so blunted.",
         "specialFlag": 0
@@ -56,8 +56,8 @@ ITEMS = [
     {
         "id": 7,
         "name": "Bucket",
-        "quality": 5.9,
-        "baseValue": 3732,
+        "quality": 4.6,
+        "baseValue": 2000,
         "type": "Tool",
         "description": "A legendary collector item. You can almost smell the 12 herbs and spices.",
         "specialFlag": 1
@@ -65,8 +65,8 @@ ITEMS = [
     {
         "id": 8,
         "name": "Hammer",
-        "quality": 8.5,
-        "baseValue": 4975,
+        "quality": 5.9,
+        "baseValue": 150,
         "type": "Tool",
         "description": "A plumbing hammer. It is so heavy it could probably smash a turtle shell.",
         "specialFlag": 0
@@ -74,8 +74,8 @@ ITEMS = [
     {
         "id": 9,
         "name": "Wrench",
-        "quality": 1.9,
-        "baseValue": 4001,
+        "quality": 9.3,
+        "baseValue": 50,
         "type": "Tool",
         "description": "Just a wrench.",
         "specialFlag": 0
@@ -83,8 +83,8 @@ ITEMS = [
     {
         "id": 10,
         "name": "Crowbar",
-        "quality": 3.8,
-        "baseValue": 3513,
+        "quality": 8.2,
+        "baseValue": 750,
         "type": "Tool",
         "description": "It is not a wrench. Wielding it, you feel like a free man.",
         "specialFlag": 0
@@ -92,8 +92,8 @@ ITEMS = [
     {
         "id": 11,
         "name": "Pistol",
-        "quality": 3.5,
-        "baseValue": 3103,
+        "quality": 2,
+        "baseValue": 50,
         "type": "Gun",
         "description": "Feels very high quality. It even comes with a little hat where the bullets come out.",
         "specialFlag": 0
@@ -101,8 +101,8 @@ ITEMS = [
     {
         "id": 12,
         "name": "Shotgun",
-        "quality": 3.8,
-        "baseValue": 84,
+        "quality": 1.6,
+        "baseValue": 150,
         "type": "Gun",
         "description": "Be vewy vewy quiet. It is voice activated for some reason.",
         "specialFlag": 0
@@ -110,8 +110,8 @@ ITEMS = [
     {
         "id": 13,
         "name": "Norf Gun",
-        "quality": 1.7,
-        "baseValue": 3522,
+        "quality": 3.7,
+        "baseValue": 750,
         "type": "Gun",
         "description": "Its Norf or something else!",
         "specialFlag": 0
@@ -119,8 +119,8 @@ ITEMS = [
     {
         "id": 14,
         "name": "Rocket Launcher",
-        "quality": 8.6,
-        "baseValue": 685,
+        "quality": 0.4,
+        "baseValue": 1500,
         "type": "Gun",
         "description": "Came with a note saying it was a Christmas present from a favorite relative.",
         "specialFlag": 1
@@ -128,8 +128,8 @@ ITEMS = [
     {
         "id": 15,
         "name": "Boomerang",
-        "quality": 5.7,
-        "baseValue": 2844,
+        "quality": 4.3,
+        "baseValue": 2000,
         "type": "Gun",
         "description": "You tried to throw it away, but it came back to you!",
         "specialFlag": 0
@@ -137,8 +137,8 @@ ITEMS = [
     {
         "id": 16,
         "name": "Melty Clocks Painting",
-        "quality": 5.1,
-        "baseValue": 1572,
+        "quality": 0.2,
+        "baseValue": 50,
         "type": "Painting",
         "description": "A painting titled Melty Time by Dolly Patron.",
         "specialFlag": 0
@@ -146,8 +146,8 @@ ITEMS = [
     {
         "id": 17,
         "name": "Solflower Painting",
-        "quality": 5.7,
-        "baseValue": 2867,
+        "quality": 5.2,
+        "baseValue": 150,
         "type": "Painting",
         "description": "A painting titled Solflower by Vance Sedan Vroom.",
         "specialFlag": 0
@@ -155,8 +155,8 @@ ITEMS = [
     {
         "id": 18,
         "name": "Screamy Dude Painting",
-        "quality": 2.8,
-        "baseValue": 3654,
+        "quality": 0,
+        "baseValue": 1500,
         "type": "Painting",
         "description": "A painting titled Yelling by Count Donut.",
         "specialFlag": 0
@@ -164,8 +164,8 @@ ITEMS = [
     {
         "id": 19,
         "name": "Mona Lusa Painting",
-        "quality": 10,
-        "baseValue": 1330,
+        "quality": 5.4,
+        "baseValue": 2000,
         "type": "Painting",
         "description": "A painting titled Monka Lucy by Leon da Caprio. It is smaller than you thought it would be.",
         "specialFlag": 1
@@ -173,8 +173,8 @@ ITEMS = [
     {
         "id": 20,
         "name": "Can of Soup Painting",
-        "quality": 2.4,
-        "baseValue": 3933,
+        "quality": 2.9,
+        "baseValue": 750,
         "type": "Painting",
         "description": "A painting titled Lunch by Andrew Peacecabinet.",
         "specialFlag": 0
@@ -182,136 +182,136 @@ ITEMS = [
     {
         "id": 21,
         "name": "Vase",
-        "quality": 8.5,
-        "baseValue": 1701,
+        "quality": 7.8,
+        "baseValue": 50,
         "type": "Antique",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "This is a very fragile vase. You can tell because it's broken. Please don't break it more. It'll lose it's value",
         "specialFlag": 0
     },
     {
         "id": 22,
         "name": "Gold Goose Statue",
-        "quality": 2.9,
-        "baseValue": 793,
+        "quality": 0.1,
+        "baseValue": 750,
         "type": "Antique",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "This Golden Goose was awarded to the most annoying goose found in North America. It skipped the ceremony so now the trophy is a precious collectors item.",
         "specialFlag": 0
     },
     {
         "id": 23,
         "name": "Compass",
-        "quality": 5.4,
-        "baseValue": 4717,
+        "quality": 4.9,
+        "baseValue": 150,
         "type": "Antique",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "If you need to figure out what way to go, use this Compass! However, you must remember that in this compass north is east, east is west, west is south and south is nowhere to be found.",
         "specialFlag": 0
     },
     {
         "id": 24,
         "name": "1959 Buick Lesabre",
-        "quality": 4,
-        "baseValue": 1370,
+        "quality": 3,
+        "baseValue": 2000,
         "type": "Antique",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "As opposed to what the name would imply, this 1959 Buick Lesabre was manufactured in 2013, it has a rear camera and some comfy heated seats.",
         "specialFlag": 1
     },
     {
         "id": 25,
         "name": "Opera Glasses",
-        "quality": 6.7,
-        "baseValue": 2476,
+        "quality": 6.9,
+        "baseValue": 1500,
         "type": "Antique",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "Have you ever gone to the opera? It doesn't matter! With these glasses you can tell anybody you've gone, and they'll have to believe you.",
         "specialFlag": 0
     },
     {
         "id": 26,
-        "name": "Poison Ivy",
-        "quality": 5.2,
-        "baseValue": 1017,
+        "name": "Cactus",
+        "quality": 3.5,
+        "baseValue": 50,
         "type": "Plant",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "It's just a cactus. It's pointy and it hurts. Ouch!",
         "specialFlag": 0
     },
     {
         "id": 27,
         "name": "Venus Flytrap",
-        "quality": 5.4,
-        "baseValue": 1801,
+        "quality": 1.5,
+        "baseValue": 150,
         "type": "Plant",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "One of the deadliest plants known to flies. Someone has glued googly eyes to this one.",
         "specialFlag": 0
     },
     {
         "id": 28,
-        "name": "Painted Pumpkin",
-        "quality": 1.9,
-        "baseValue": 4489,
+        "name": "Pumpkin",
+        "quality": 9.6,
+        "baseValue": 750,
         "type": "Plant",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "This spooky pumpkin was crafted by some random middle aged person for Halloween. Somehow, it's still fresh",
         "specialFlag": 0
     },
     {
         "id": 29,
         "name": "Egg Bush",
-        "quality": 2.2,
-        "baseValue": 2003,
+        "quality": 1,
+        "baseValue": 1500,
         "type": "Plant",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "It grows eggs. Chicken's hate it!",
         "specialFlag": 0
     },
     {
         "id": 30,
         "name": "Money Tree",
-        "quality": 3,
-        "baseValue": 2598,
+        "quality": 7.5,
+        "baseValue": 2000,
         "type": "Plant",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "This precious tree grows cash. You can cross breed it with a hazelnut tree to get some cashews.",
         "specialFlag": 1
     },
     {
         "id": 31,
         "name": "Watch",
-        "quality": 2.3,
-        "baseValue": 2395,
+        "quality": 2.8,
+        "baseValue": 50,
         "type": "Technology",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "When you're tired of your smartphone, but not tired of knowing what time it is, you can always rely on a watch.",
         "specialFlag": 0
     },
     {
         "id": 32,
         "name": "Smartphone",
-        "quality": 1.1,
-        "baseValue": 172,
+        "quality": 5.3,
+        "baseValue": 1500,
         "type": "Technology",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "You never grow tired of it.",
         "specialFlag": 0
     },
     {
         "id": 33,
         "name": "Television",
-        "quality": 3.3,
-        "baseValue": 2842,
+        "quality": 6.5,
+        "baseValue": 750,
         "type": "Technology",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "Look at those funny colors move. It's mesmerizing! You can't take your eyes off it. Please stand at least 5 feet away from the television.",
         "specialFlag": 0
     },
     {
         "id": 34,
         "name": "Toystation 5",
-        "quality": 1.3,
-        "baseValue": 1065,
+        "quality": 8.7,
+        "baseValue": 2000,
         "type": "Technology",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "It only runs remasters of the Toy Story games.",
         "specialFlag": 1
     },
     {
         "id": 35,
         "name": "Gamekid",
-        "quality": 4.5,
-        "baseValue": 4966,
+        "quality": 5.9,
+        "baseValue": 150,
         "type": "Technology",
-        "description": "This is a test description that has a lot of characters so UI is possible to make UWU",
+        "description": "Someone saw all those tv ads with kids playing games upside down and marketed a product only for them. A genius marketer for sure.",
         "specialFlag": 0
     }
 ]

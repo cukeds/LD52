@@ -339,9 +339,26 @@ let Menus = {
     }
   },
   customerMenu:{
+
+    button_action: function(action){
+      if(this.cooldown > 0)
+        return;
+      else{
+        if(action === "close"){
+          !this.customer.closing ? this.customer.close() : void(0);
+        }
+        else{
+          !this.customer.closing ? this.customer.react(action) : void(0);
+          this.cooldown = this.maxCooldown;
+        }
+      }
+    },
+
     load: function(){
       Menu.apply(this);
       this.name = "customerMenu";
+      this.cooldown = 0;
+      this.maxCooldown = 1000;
       this.ui = [];
       this.customer = CUSTOMERS.Generic();
       let menuLeft = 2*game.width/3;
@@ -388,9 +405,7 @@ let Menus = {
             })
         )
 
-
       });
-
 
       this.buttons.push(new Button({
         x: menuLeft + 2,
@@ -398,7 +413,7 @@ let Menus = {
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
         text: 'Compliment',
-        callback: () => !this.customer.closing ? this.customer.react("compliment") : void(0)
+        callback: () => this.button_action("compliment")
         }
       ));
 
@@ -408,7 +423,7 @@ let Menus = {
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
         text: 'Upsell',
-        callback: () => !this.customer.closing ? this.customer.react("hook") : void(0)
+        callback: () => this.button_action("hook")
       }));
 
       this.buttons.push(new Button({
@@ -417,7 +432,7 @@ let Menus = {
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
         text: 'Insult',
-        callback: () => !this.customer.closing ? this.customer.react("insult") : void(0)
+        callback: () => this.button_action("insult")
       }));
 
       this.buttons.push(new Button({
@@ -426,7 +441,7 @@ let Menus = {
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
         text: 'Reverse Psychology',
-        callback: () => !this.customer.closing ? this.customer.react("reverse") : void(0)
+        callback: () => this.button_action("reverse")
       }));
 
       this.buttons.push(new Button({
@@ -435,12 +450,12 @@ let Menus = {
         width: menuWidth - 4,
         height: (menuHeight/5) - 4,
         text: 'Close the deal',
-        callback: () => !this.customer.closing ? this.customer.close() : void(0)
+        callback: () => this.button_action("close")
       }));
       return this;
     },
     update: function(){
-
+      this.cooldown -= game.delta;
       this.customer.update();
       this.buttons.forEach(btn =>{
         btn.update();
@@ -519,14 +534,17 @@ let Menus = {
       let menuTop = 3*game.height/4;
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
-
+      game.maestro.playVoice("win");
       this.buttons.push(new Button({
             x: menuLeft + 2,
             y: menuTop + 2,
             width: menuWidth - 4,
             height: (menuHeight/5) - 4,
             text: 'OMG I FINALLY GET TO DATE YOU :D',
-            callback: () => game.enterMenu(Menus.credits.load())
+            callback: () => {
+              game.maestro.stopAllVoices();
+              game.enterMenu(Menus.credits.load());
+            }
           }
       ));
       return this;
@@ -560,13 +578,17 @@ let Menus = {
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
 
+      game.maestro.playVoice("lose");
       this.buttons.push(new Button({
             x: menuLeft + 2,
             y: menuTop + 2,
             width: menuWidth - 4,
             height: (menuHeight/5) - 4,
-            text: "Oh no I'm so saaad, I wanna cryyyyyy",
-            callback: () => game.enterMenu(Menus.credits.load())
+            text: "Oh no, I promise I WILL harvest $10000 next time yessss",
+            callback: () => {
+              game.maestro.stopAllVoices();
+              game.enterMenu(Menus.credits.load())
+            }
           }
       ));
       return this;
