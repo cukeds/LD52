@@ -20,7 +20,7 @@ let Customer = function(args){
   this.explodingParticles = [];
 
   this.react = function(action){
-    this.actionModifiers[action] > 1 ? this.priceModifier += 0.07 : this.priceModifier -= 0.15;
+    this.actionModifiers[action] >= 1 ? this.priceModifier += 0.07 : this.actionModifiers[action] > 0.5 ? this.priceModifier -= 0.15 : this.priceModifier -= 0.3;
     this.actionModifiers[action] > 1 ? game.maestro.playVoice(`good${game.randInt(3)+1}`) : game.maestro.playVoice(`bad${game.randInt(3)+1}`);
     this.actionModifiers[action] > 0 ? this.actionModifiers[action] -= 0.2 : this.actionModifiers[action] = 0;
     this.sellingPrice = Math.round(this.item.apparentVal * this.priceModifier)
@@ -130,16 +130,49 @@ CUSTOMERS = {
     let item = game.player.items[game.randInt(game.player.items.length)];
     let sellingPrice = item.apparentVal * 0.8;
     let keys =  Object.keys(PERSONALITIES);
+    let body = `body${game.randInt(3) + 1}`;
+    let hat = `hat${game.randInt(3) + 1}`;
+    let face = `face${game.randInt(3) + 1}`;
+    let head = `head${game.randInt(3) + 1}`;
+    let actionModifiers;
+    if(hat == "hat1" && face == "face1"){
+      actionModifiers = PERSONALITIES.Angry;
+    }
+    if(hat == "hat2" && face == "face1"){
+      actionModifiers = PERSONALITIES.Annoying;
+    }
+    if(hat == "hat3" && face == "face1"){
+      actionModifiers = PERSONALITIES.Karen;
+    }
+    if(hat == "hat1" && face == "face2"){
+      actionModifiers = PERSONALITIES.Pushover;
+    }
+    if(hat == "hat2" && face == "face2"){
+      actionModifiers = PERSONALITIES.Hookable;
+    }
+    if(hat == "hat3" && face == "face2"){
+      actionModifiers = PERSONALITIES.Happy;
+    }
+    if(hat == "hat1" && face == "face3"){
+      actionModifiers = PERSONALITIES.Kooky;
+    }
+    if(hat == "hat2" && face == "face3"){
+      actionModifiers = PERSONALITIES.Shy;
+    }
+    if(hat == "hat3" && face == "face3"){
+      actionModifiers = PERSONALITIES.Blushy;
+    }
+
     return new Customer({
       name: `${FIRST_NAMES[game.randInt(FIRST_NAMES.length)]} "${NICKNAMES[game.randInt(NICKNAMES.length)]}" ${LAST_NAMES[game.randInt(LAST_NAMES.length)]}`,
-      body: `body${game.randInt(3) + 1}`,
-      hat: `hat${game.randInt(3) + 1}`,
-      face: `face${game.randInt(3) + 1}`,
-      head: `head${game.randInt(3) + 1}`,
+      body: body,
+      hat: hat,
+      face: face,
+      head: head,
       item: item,
       sellingPrice: sellingPrice,
       maxPatience: game.randInt(4, 6),
-      actionModifiers: PERSONALITIES[keys[game.randInt(keys.length)]]
+      actionModifiers: actionModifiers
     })
   }
 }
@@ -150,24 +183,55 @@ PERSONALITIES = {
     compliment: 1.1,
     hook: 1.3,
     insult: 0.3,
-    reverse: 0.5,
+    reverse: 0.8,
   },
   Blushy: {
     compliment: 1.5,
-    hook: 0.5,
+    hook: 0.6,
     insult: 0.1,
     reverse: 1,
   },
   Pushover: {
     compliment: 0.1,
     hook: 1,
-    insult: 1.4,
-    reverse: 1.3,
+    insult: 1.5,
+    reverse: 1.1,
   },
   Annoying: {
-    compliment: 1,
-    hook: 0.1,
+    compliment: 0.9,
+    hook: 0.9,
+    insult: 0.9,
+    reverse: 0.9,
+  },
+  Karen: {
+    compliment: 1.1,
+    hook: 0.6,
     insult: 0.1,
-    reverse: 1.6,
+    reverse: 1.5
+  },
+  Angry: {
+    compliment: 1.3,
+    hook: 0.4,
+    insult: 0.1,
+    reverse: 0.1,
+  },
+  Kooky: {
+    compliment: 1.2,
+    hook: 0.7,
+    insult: 0.4,
+    reverse: 1.2
+  },
+  Shy: {
+    compliments: 0.7,
+    hook: 1.3,
+    insult: 0.4,
+    reverse: 1
+  },
+  Happy: {
+    compliment: 1.1,
+    hook: 1.1,
+    insult: 1.1,
+    reverse: 1.1
   }
+
 }

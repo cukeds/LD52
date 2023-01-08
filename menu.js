@@ -325,7 +325,8 @@ let Menus = {
     },
 
     reload: function() {
-      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(btn => game.player.items.filter(item => item.id === btn.id).length === 0);
+      let checkButtons = this.buttons.filter(btn => btn.id !== undefined).filter(
+          btn => game.player.items.filter(item => item.id === btn.id).length === 0);
       checkButtons.length > 0 ? checkButtons[0].toRemove = true : void(0);
       this.buttons = this.buttons.filter(btn => btn.toRemove !== true);
 
