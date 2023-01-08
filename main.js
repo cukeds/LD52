@@ -22,7 +22,7 @@ var game = {
     this.controller = new MouseController(this.artist.canvas);
     this.artist.drawRect(0,0,this.width,this.height,"#aaa");
     
-    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle"];
+    let imageNames = ["background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle", "chicky", "background-intro"];
     for(let i = 1; i <= 3; i++){
       imageNames.push(`hat${i}`);
       imageNames.push(`body${i}`);
@@ -46,6 +46,13 @@ var game = {
     })
     ///////////////////   Voices
     let voiceNames = [];
+
+    for(let i = 1; i < 4; i++){
+      voiceNames.push(`enter${i}`);
+      voiceNames.push(`bad${i}`);
+      voiceNames.push(`good${i}`);
+      voiceNames.push(`angry${i}`);
+    }
     voiceNames.forEach(voice =>{
       this.voices[voice] = this.maestro.loadSound(voice);
     })

@@ -12,6 +12,7 @@ let Customer = function(args){
   this.patience = this.maxPatience;
   this.triggered = 0;
   this.closing = false;
+  this.start = true;
   this.sellingPrice = args.sellingPrice;
   this.dialogue = "";
   this.priceModifier = 1;
@@ -20,6 +21,7 @@ let Customer = function(args){
 
   this.react = function(action){
     this.actionModifiers[action] > 1 ? this.priceModifier += 0.07 : this.priceModifier -= 0.15;
+    this.actionModifiers[action] > 1 ? game.maestro.playVoice(`good${game.randInt(3)+1}`) : game.maestro.playVoice(`bad${game.randInt(3)+1}`);
     this.actionModifiers[action] > 0 ? this.actionModifiers[action] -= 0.2 : this.actionModifiers[action] = 0;
     this.sellingPrice = Math.round(this.item.apparentVal * this.priceModifier)
 
@@ -36,7 +38,14 @@ let Customer = function(args){
     for(let i = 0; i < 300; i++){
       this.explodingParticles.push(new Particle(850, 150));
     }
+    game.maestro.playVoice(`angry${game.randInt(3)+1}`)
   }
+
+  this.exit = function(){
+    game.maestro.stopAllVoices();
+    game.exitMenu();
+  }
+
 
 
   this.update = function(){
@@ -44,11 +53,10 @@ let Customer = function(args){
       this.offsetX += game.delta / 3;
       if(this.offsetX > 640){
         game.player.items = game.player.items.filter(item => item.id !== this.item.id);
-        game.exitMenu();
+        this.exit();
       }
     }
     else {
-
       if (this.offsetX > 0) {
         this.offsetY = game.randInt(20);
         this.offsetX -= game.delta / 3;
@@ -69,10 +77,14 @@ let Customer = function(args){
         this.explodingParticles.forEach(particle => particle.update());
         this.triggered -= game.delta;
         if (this.triggered < 0) {
-          game.exitMenu();
+          this.exit();
         }
 
       }
+    }
+    if(this.start){
+      this.start = false;
+      game.maestro.playVoice(`enter${game.randInt(3)+1}`);
     }
   }
 

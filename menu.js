@@ -86,6 +86,41 @@ let Box = function(params){
 }
 
 let Menus = {
+  introMenu:{
+    load: function(){
+      Menu.apply(this);
+      this.name = "introMenu";
+
+      this.buttons.push(new Button({
+        x: 0,
+        y: 0,
+        width: 300,
+        height: 75,
+        text: "Skip intro",
+        callback: function(){
+          game.enterMenu(Menus.itemsMenu.load());
+        }
+      }))
+
+      return this;
+    },
+    update: function(){
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+    },
+    draw: function(){
+      game.artist.drawImage(game.images["background-intro"], 0, 0,game.width,game.height)
+      game.artist.drawImage(game.images["chicky"], game.width / 2, 0, 458, 648)
+      game.artist.drawRect(50, 150, 700, (CONFIG.INTROTEXT.split(" ").length - 1) % 26 * 10)
+      game.artist.writeTextFit(CONFIG.INTROTEXT, 50, 150, 24, 700, "white")
+
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
+
+    }
+  },
   startMenu:{
     load: function(){
       Menu.apply(this);
@@ -98,7 +133,7 @@ let Menus = {
         height: 150,
         text: "Start Game",
         callback: function(){
-          game.enterMenu(Menus.itemsMenu.load());
+          game.enterMenu(Menus.introMenu.load());
         }
       }))
 
@@ -427,7 +462,9 @@ let Menus = {
 
 
       let btn = this.buttons.find(btn => btn.id === this.customer.item.id);
-      game.artist.drawImage(game.images["circle"], btn.x, btn.y, 120, 80);
+      if(btn !== undefined){
+        game.artist.drawImage(game.images["circle"], btn.x, btn.y, 120, 80);
+      }
     }
   },
   pushGame:{

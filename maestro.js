@@ -28,6 +28,8 @@ let Maestro = function(){
     }
 	}
 
+
+
   this.playVoice = function(sndName){
     let sound = game.voices[sndName];
     sound.volume = game.voiceVolume / 100;
@@ -44,6 +46,11 @@ let Maestro = function(){
     let sound = game.voices[sndName];
     sound.pause();
   }
+
+  this.stopAllVoices = function(){
+      game.voices.forEach(voice=> this.stopVoice(voice));
+  }
+
 
   this.playMusic = function(sndName){
     let sound = game.music[sndName];
