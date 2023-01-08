@@ -40,12 +40,12 @@ var game = {
       this.sounds[snd] = this.maestro.loadSound(snd);
     })
     ///////////////////   Music
-    let musicNames = [];
+    let musicNames = ["background-intro", "music1"];
     musicNames.forEach(mus =>{
       this.music[mus] = this.maestro.loadSound(mus);
     })
     ///////////////////   Voices
-    let voiceNames = [];
+    let voiceNames = ["chicky"];
 
     for(let i = 1; i < 4; i++){
       voiceNames.push(`enter${i}`);

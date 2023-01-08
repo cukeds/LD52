@@ -90,7 +90,8 @@ let Menus = {
     load: function(){
       Menu.apply(this);
       this.name = "introMenu";
-
+      game.maestro.playMusic("background-intro");
+      game.maestro.playVoice("chicky");
       this.buttons.push(new Button({
         x: 0,
         y: 0,
@@ -98,6 +99,8 @@ let Menus = {
         height: 75,
         text: "Continue",
         callback: function(){
+          game.maestro.playMusic("music1");
+          game.maestro.stopVoice("chicky");
           game.enterMenu(Menus.itemsMenu.load());
         }
       }))
