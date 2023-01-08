@@ -129,10 +129,10 @@ let Menus = {
       this.name = "startMenu";
 
       this.buttons.push(new Button({
-        x: 700,
-        y: 600,
-        width: 600,
-        height: 150,
+        x: 900,
+        y: 650,
+        width: 400,
+        height: 100,
         text: "Start Game",
         callback: function(){
           game.enterMenu(Menus.introMenu.load());
@@ -150,10 +150,7 @@ let Menus = {
     draw: function(){
       //game.artist.drawRect(0,0,game.width,game.height,'white');
       game.artist.drawImage(game.images["start"], 0, 0, game.width, game.height);
-      game.artist.drawImage(game.images["body1"], 200,  50, 275, 540);
-      game.artist.drawImage(game.images["head1"], 230,  95, 215, 150);
-      game.artist.drawImage(game.images["face1"],  220,  95, 215, 150);
-      game.artist.drawImage(game.images["hat1"],  220,  75, 235, 150);
+
 
       this.buttons.forEach(btn => {
         btn.draw();

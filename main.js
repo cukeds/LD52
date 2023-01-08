@@ -195,8 +195,6 @@ var game = {
   },
 
   loadFromUrl: function (url){
-
-
     let segments = url.split("#")
 
     if(segments === 1){
