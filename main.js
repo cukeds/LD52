@@ -216,6 +216,10 @@ var game = {
         let sp = item.split("q");
         let i = Number(sp[0])
         let q = Number(sp[1])
+
+        if(i === 0){
+          this.enterMenu(Menus.pushGame.load());
+        }
         this.player.items.push(this.parseItem(i, q));
       }
     })
