@@ -307,9 +307,9 @@ let Menus = {
       if(game.player.items.length === 0 && game.player.money < 10000 && game.round < 5){
         game.enterMenu(Menus.pushGame.load());
       }
-      else if (game.player.money > 10000){
+      else if (game.player.money >= 10000){
         game.enterMenu(Menus.wonGame.load());
-      }else if(game.round >= 5){
+      }else if(game.round >= 5 && game.player.items.length === 0){
         game.enterMenu(Menus.lostGame.load());
       }
     },
@@ -537,8 +537,11 @@ let Menus = {
     },
     draw: function(){
 
-      game.artist.drawImage(game.images["background-intro"], 0, 0, game.width, game.height)
 
+      game.artist.drawImage(game.images["background-intro"], 0, 0, game.width, game.height)
+      game.artist.drawImage(game.images["chicky-love"], game.width / 2, 0, 458, 648)
+      game.artist.drawRect(50, 150, 700, (CONFIG.WINTEXT.split(" ").length - 1) % 33 * 10)
+      game.artist.writeTextFit(CONFIG.WINTEXT, 50, 150, 24, 700, "white")
       this.buttons.forEach(btn =>{
         btn.draw();
       })
@@ -575,7 +578,12 @@ let Menus = {
     draw: function(){
 
       game.artist.drawImage(game.images["background-intro"], 0, 0, game.width, game.height)
-
+      game.artist.drawImage(game.images["chicky-angry"], game.width / 2, 0, 458, 648)
+      game.artist.drawRect(50, 150, 700, (CONFIG.LOSETEXT.split(" ").length - 1) % 30 * 10)
+      game.artist.writeTextFit(CONFIG.LOSETEXT, 50, 150, 24, 700, "white")
+      this.buttons.forEach(btn =>{
+        btn.draw();
+      })
       this.buttons.forEach(btn =>{
         btn.draw();
       })
