@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0bf2b372-24a8-47eb-9ff6-f382203479fa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/start.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/start.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tool.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tool.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/menu.js" afterDir="false" />
     </list>
@@ -58,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673069029957</updated>
-      <workItem from="1673069031811" duration="47030000" />
+      <workItem from="1673069031811" duration="48663000" />
     </task>
     <servers />
   </component>
@@ -84,12 +84,6 @@
           <line>198</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/menu.js</url>
-          <line>88</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

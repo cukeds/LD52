@@ -23,7 +23,7 @@ var game = {
     this.controller = new MouseController(this.artist.canvas);
     this.artist.drawRect(0,0,this.width,this.height,"#aaa");
     
-    let imageNames = ["start", "chicky-love", "chicky-angry", "background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle", "chicky", "background-intro", "credits"];
+    let imageNames = ["beginning", "start", "chicky-love", "chicky-angry", "background-main", "antique", "gun", "jewelry", "painting", "plant", "technology", "tool", "circle", "chicky", "background-intro", "credits"];
     for(let i = 1; i <= 3; i++){
       imageNames.push(`hat${i}`);
       imageNames.push(`body${i}`);
@@ -41,7 +41,7 @@ var game = {
       this.sounds[snd] = this.maestro.loadSound(snd);
     })
     ///////////////////   Music
-    let musicNames = ["background-intro", "music1"];
+    let musicNames = ["lose-music", "win-music", "background-intro", "music1"];
     musicNames.forEach(mus =>{
       this.music[mus] = this.maestro.loadSound(mus);
     })
@@ -205,7 +205,6 @@ var game = {
 
 
     if (parts.length === 1) {
-      console.log(this.randInt(5) + 1)
       this.player.items.push(this.parseItem(this.randInt(5) + 1, 2))
       this.player.items.push(this.parseItem(this.randInt(5, 5) + 1, 2))
       this.player.items.push(this.parseItem(this.randInt(5, 10) + 1, 2))
@@ -215,7 +214,7 @@ var game = {
         item.baseVal = item.baseVal / 2;
         item.apparentVal = item.apparentVal / 2;
       })
-      this.menus.push(Menus.startMenu.load());
+      this.menus.push(Menus.clickToStart.load(Menus.startMenu));
       return;
     }
     if (parts.length < 3) {
@@ -242,10 +241,10 @@ var game = {
     this.round = Number(parts[2].split("r")[1])
 
     if(this.round === 0){
-      this.menus.push(Menus.startMenu.load());
+      this.menus.push(Menus.clickToStart.load(Menus.startMenu));
     }
     else{
-      this.menus.push(Menus.itemsMenu.load());
+      this.menus.push(Menus.clickToStart.load(Menus.itemsMenu));
     }
   },
 

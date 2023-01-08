@@ -86,6 +86,37 @@ let Box = function(params){
 }
 
 let Menus = {
+  clickToStart:{
+    load: function(menu){
+      Menu.apply(this);
+      this.name = "startMenu";
+
+      this.buttons.push(new Button({
+        x: game.width/2 - 150,
+        y: game.height/2,
+        width: 300,
+        height: 80,
+        text: "Start Game",
+        callback: function(){
+            game.enterMenu(menu.load());
+        }
+      }))
+
+      return this;
+    },
+    update: function(){
+      this.buttons.forEach(btn =>{
+        btn.update();
+      })
+    },
+    draw: function(){
+      game.artist.drawImage(game.images["beginning"], 0, 0, game.width, game.height);
+
+      this.buttons.forEach(btn => {
+        btn.draw();
+      });
+    }
+  },
   introMenu:{
     load: function(){
       Menu.apply(this);
@@ -126,6 +157,7 @@ let Menus = {
   startMenu:{
     load: function(){
       Menu.apply(this);
+      game.maestro.playMusic("win-music");
       this.name = "startMenu";
 
       this.buttons.push(new Button({
@@ -531,6 +563,7 @@ let Menus = {
       let menuTop = 3*game.height/4;
       let menuWidth = game.width/3-5;
       let menuHeight = game.height/4-5;
+      game.maestro.playMusic("win-music");
       game.maestro.playVoice("win");
       this.buttons.push(new Button({
             x: menuLeft + 2,
@@ -576,6 +609,7 @@ let Menus = {
       let menuHeight = game.height/4-5;
 
       game.maestro.playVoice("lose");
+      game.maestro.playMusic("lose-music");
       this.buttons.push(new Button({
             x: menuLeft + 2,
             y: menuTop + 2,
